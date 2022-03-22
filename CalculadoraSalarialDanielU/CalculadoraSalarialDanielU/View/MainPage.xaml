@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:CalculadoraSalarialDanielU.ModelView"
+             x:Class="CalculadoraSalarialDanielU.MainPage"
+                >
+    <ContentPage.BindingContext>
+        <local:MainViewVM/>
+    </ContentPage.BindingContext>
+    
+<StackLayout>
+        <Frame BackgroundColor="#D24D10" Padding="4" CornerRadius="0">
+            <Label Text="Calculadora salarial!" HorizontalTextAlignment="Center" TextColor="White" FontSize="24"/>
+        </Frame>
+        <TableView Intent="Form"
+                   Margin="15"
+                   HasUnevenRows="True">
+            <TableSection>
+                <ViewCell>
+                    <Label Text="Ingrese sus datos en colones" 
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Padding="4"/>
+                </ViewCell>
+            </TableSection>
+            <TableSection>
+                <EntryCell Label="Salario bruto y Comisiones"
+                           Keyboard="Numeric"
+                           Text="{Binding calculadora.SalarioBruto}"/>
+                <EntryCell Label="Otros ingresos salariales ocasionales"
+                           Keyboard="Numeric"
+                           Text="{Binding calculadora.IngresosExtra}"/>
+                <EntryCell Label="Reembolso de gastos no salariales ni gravables"
+                           Keyboard="Numeric"
+                           Text="{Binding calculadora.Reembolso}"/>
+                <TextCell Text="Total de Ingresos laborales"
+                          TextColor="Black"
+                          Detail=""/>
+            </TableSection>
+            <TableSection>
+                <ViewCell>
+                    <StackLayout>
+                        <Button Text="Calcular"
+                                BackgroundColor="#D24D10"
+                                TextColor="White"
+                                HorizontalOptions="End"
+                                Command="{Binding OperationCommand}"/>
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
+            <TableSection>
+                <ViewCell>
+                    <Label Text="Deducciones"
+                           BackgroundColor="Gray"
+                           TextColor="White"
+                           Padding="4"/>
+                </ViewCell>
+            </TableSection>
+            <TableSection>
+                <TextCell Text="CCSS" 
+                          TextColor="Black"
+                          />
+                <TextCell Text="Enfermedad y Maternidad 5.5%"
+                          TextColor="Black"
+                          Detail="{Binding calculadora.EnfermedadMaternidad}"/>
+                <TextCell Text="Invalidez y Muerte 3.84%"
+                          TextColor="Black"
+                          Detail="{Binding calculadora.Ivm}"/>
+                <TextCell Text="Aporte Trabajador Banco Popular 1%"
+                          TextColor="Black"
+                          Detail="{Binding calculadora.Aporte}"/>
+                <EntryCell Label="Asociacion Solidarista"
+                           Keyboard="Numeric"
+                           Text="{Binding calculadora.Asociacion}"/>
+                <TextCell Text="Total Asociacion: "
+                          TextColor="Black"
+                          Detail="{Binding calculadora.AsociaRed}"/>
+                <EntryCell Label="Plan de pensiones: "
+                           Keyboard="Numeric"
+                           Text="{Binding calculadora.Pensiones}"/>
+                <TextCell Text="Salario Gravable"
+                          TextColor="Black"
+                          Detail="{Binding calculadora.SalarioGravable}"/>
+                <TextCell Text="Imp. Renta"
+                          TextColor="Black"
+                          Detail="{Binding calculadora.ImpRenta}"/>
+                <TextCell Text="Total deducciones:"
+                          TextColor="Black"
+                          Detail="{Binding calculadora.TotalDeducciones}"/>
+                <TextCell Text="Ingresos Netos"
+                          TextColor="Black"
+                          Detail="{Binding calculadora.IngresoNeto}"/>
+            </TableSection>
+        </TableView>
+        <Frame BackgroundColor="#D24D10">
+            <Label Text="Daniel Ubilla - Xamarin"
+                   TextColor="White"/>
+        </Frame>
+    </StackLayout>
+
+</ContentPage>
